@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
+    <title>Password Manager</title>
+</head>
+<body>
+    <div class="container w-screen h-screen flex justify-center items-center bg-indigo-950 text-white">
+        <div class="login-container border-2 border-yellow-600 grid-cols-2 items-center rounded  drop-shadow-lg">
+            <div class="tab w-full flex justify-center border-yellow-500">
+                <button class="btn-active bg-yellow-600 border-yellow-600 border-2 border-top-none p-1 w-2/4 hover:bg-yellow-600" id="show-login">Login</button>
+                <button class="border-yellow-600 border-2 p-1 w-2/4 hover:bg-yellow-600" id="show-register">Register</button>
+            </div>
+            <div class="flex p-4">
+                <div class="flex justify-center w-full text-3xl mb-2">
+                    <!-- <h1>LOGIN</h1> -->
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                </div>
+            </div>
+            <!-- form -->
+            <form class="w-full pb-4 px-4" id="login-form">
+                <div class="grid-cols-2 mb-4">
+                    <input 
+                        type="text" 
+                        name="username" 
+                        id="username"
+                        placeholder="Username"
+                        class="py-1 px-1 rounded text-black"
+                    />
+                </div>
+                <div class="grid-cols-2 mt-3">
+                    <input 
+                        type="password" 
+                        name="password" 
+                        id="password"
+                        placeholder="Password"
+                        class="py-1 px-1 rounded text-black"
+                    />
+                </div>
+                <div class="flex justify-center w-full mt-4">
+                    <button class="py-1 px-4 hover:bg-yellow-600 border-2 border-yellow-600 rounded outline-none" type="submit">Login</button>
+                </div>
+            </form>
+            <form id="register-form" class="w-full pb-4 px-4">
+                <div class="grid-cols-2 mb-4">
+                    <input 
+                        type="text" 
+                        name="username" 
+                        id="rg-username"
+                        placeholder="Username"
+                        class="py-1 px-1 rounded text-black"
+                    />
+                </div>
+                <div class="grid-cols-2 mb-4">
+                    <input 
+                        type="email" 
+                        name="email" 
+                        id="rg-email"
+                        placeholder="email"
+                        class="py-1 px-1 rounded text-black"
+                    />
+                </div>
+                <div class="grid-cols-2 mt-3">
+                    <input 
+                        type="password" 
+                        name="password" 
+                        id="rg-password"
+                        placeholder="Password"
+                        class="py-1 px-1 rounded text-black"
+                    />
+                </div>
+                <div class="flex justify-center">
+                    <button class="py-1 px-4 hover:bg-yellow-600 border-2 border-yellow-600 rounded outline-none mt-3" id="registerBtn">Register</button>
+                </div>
+            </form>
+        </div>
+        <div class="hidden w-screen">
+            <h1>Welcome!</h1>
+        </div>
+    </div>
+</body>
+<script type="module" src="js/index.js"></script>
+</html>

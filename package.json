@@ -1,0 +1,23 @@
+{
+  "name": "password-manager",
+  "version": "1.0.0",
+  "description": "A desktop app that manage password",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "npx electronmon ."
+  },
+  "author": "Leng Yang",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^26.2.1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "dotenv": "^16.3.1",
+    "jsonwebtoken": "^9.0.2",
+    "sqlite3": "^5.1.6",
+    "toastify-js": "^1.12.0"
+  }
+}
