@@ -3,8 +3,6 @@ const { getUserByUsername } = require('./services/user');
 const { generateToken } = require('./utilities/generateToken');
 
 async function login(credentials) {
-    // console.log(credentials);
-    // return credentials;
     
     try {
         const { username, password } = credentials;

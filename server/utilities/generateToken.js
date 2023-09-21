@@ -24,9 +24,12 @@ const isTokenExpired = (token) => {
 
  // get milliseconds of current time
  const currentTime = now.getTime();
+ 
+//  get token expired time
+ const expTime = new Date(decode.exp * 1000).getTime();
 
  // check is currentTime is less then token time
- return currentTime > decode.exp;
+ return currentTime > expTime;
 }
 
 module.exports = {

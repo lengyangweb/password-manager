@@ -10,8 +10,8 @@
     <title>Password Manager</title>
 </head>
 <body>
-    <div class="container w-screen h-screen flex justify-center items-center bg-indigo-950 text-white">
-        <div class="login-container border-2 border-yellow-600 grid-cols-2 items-center rounded  drop-shadow-lg">
+    <div class="container fixed w-screen h-screen flex justify-center items-center bg-indigo-950 text-white">
+        <div id="login-container" class="login-container border-2 border-yellow-600 grid-cols-2 items-center rounded  drop-shadow-lg">
             <div class="tab w-full flex justify-center border-yellow-500">
                 <button class="btn-active bg-yellow-600 border-yellow-600 border-2 border-top-none p-1 w-2/4 hover:bg-yellow-600" id="show-login">Login</button>
                 <button class="border-yellow-600 border-2 p-1 w-2/4 hover:bg-yellow-600" id="show-register">Register</button>
@@ -79,7 +79,7 @@
                 </div>
             </form>
         </div>
-        <div class="hidden w-screen">
+        <div class="hidden w-screen" id="main-container">
             <h1>Welcome!</h1>
         </div>
     </div>

@@ -1,8 +1,10 @@
 const lgForm = document.querySelector('#login-form');
 const rgForm = document.querySelector('#register-form');
 const showLgBtn = document.querySelector('#show-login');
-const showRegBtn = document.querySelector('#show-register');
 const registerBtn = document.querySelector('#registerBtn');
+const showRegBtn = document.querySelector('#show-register');
+const mainContainer = document.querySelector('#main-container');
+const loginContainer = document.querySelector('#login-container');
 
 /**
  * Show dialog message
@@ -65,12 +67,16 @@ const validateToken = async (token) => {
     let isTokenExpired = false;
     const interval = setInterval(async() => {
         isTokenExpired = await auth.isTokenExpired(token);
-    })
 
-    if (isTokenExpired) {
-        removeToken();
-        clearInterval(interval);
-    }
+        console.log(isTokenExpired);
+
+        if (isTokenExpired) {
+            showLoginPage(); // show login page
+            removeToken(); // remove token from localStorage
+            clearInterval(interval);
+        }
+    }, 1000);
+
 }
 
 /**
@@ -100,7 +106,10 @@ async function login(e) {
 
         // save token
         saveToken(response.token);
+        
+        showMainPage();
 
+        // validate if token is expired
         validateToken(response.token);
         
         showMessage(response.message);
@@ -110,6 +119,18 @@ async function login(e) {
     } catch (error) {
         console.error(error);
     }
+}
+
+const showMainPage = () => {
+    // add class hidden to login container
+    loginContainer.classList.add('hidden');
+    mainContainer.classList.remove('hidden');
+}
+
+const showLoginPage = () => {
+    // add class hidden to login container
+    loginContainer.classList.remove('hidden');
+    mainContainer.classList.add('hidden');
 }
 
 /**
@@ -198,7 +219,10 @@ addEventListener('DOMContentLoaded', async () => {
 
         // if token is expired
         if (tokenIsExpired) {
-            removeToken();
+           showLoginPage();
+           return removeToken();
         }
+
+
     }
 });
