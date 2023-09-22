@@ -2,6 +2,7 @@
 import { showMainPage } from "./display.js";
 import { saveToken, validateToken } from "./token.js";
 import { showMessage, showErrorMessage } from "./message.js";
+import { fetchUser } from "./user.js";
 
 /**
  * Login user
@@ -33,6 +34,11 @@ async function login(e) {
         
         // show main page
         showMainPage();
+
+        // fetch user
+        const user = await fetchUser();
+
+        console.log(user); // log user for now
 
         // validate if token is expired
         validateToken(response.token);

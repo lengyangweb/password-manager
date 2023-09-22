@@ -6,6 +6,7 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const { login } = require('./server/auth');
 const { isTokenExpired } = require('./server/utilities/generateToken');
 const { createUserTable, createUser } = require('./server/services/user');
+const { fetchUser } = require('./renderer/js/user');
 
 // process.env.NODE_ENV = 'development';
 
@@ -48,6 +49,9 @@ app.whenReady().then(() => {
 ipcMain.handle('auth:login', (event, credentials) => login(credentials));
 ipcMain.handle('auth:validateToken', (event, token) => isTokenExpired(token));
 ipcMain.handle('user:register', (event, newUser) => createUser(newUser));
+
+// test hook
+ipcMain.handle('user:get', async (event) => await fetchUser())
 
 // if app is closed
 app.on('window-all-closed', () => {

@@ -2,6 +2,9 @@ const bcryptjs = require('bcryptjs');
 const { openDB } = require("../dbs/config");
 const db = openDB(); // open database
 
+/**
+ * Create user table in the database
+ */
 const createUserTable = () => {
     const sql = `CREATE TABLE IF NOT EXISTS users(
         id INTEGER PRIMARY KEY,
@@ -41,6 +44,10 @@ const createUser = (newUser) => {
     })
 }
 
+/**
+ * Get all users
+ * @returns {Promise[]}
+ */
 const getUsers = () => {
     return new Promise((resolve, reject) => {
         const query = `SELECT * FROM users`;
@@ -54,6 +61,11 @@ const getUsers = () => {
     });
 }
 
+/**
+ * Get a user by username
+ * @param {String} username 
+ * @returns {Object}
+ */
 const getUserByUsername = (username) => {
     return new Promise((resolve, reject) => {
         const sql = `SELECT * FROM users WHERE username = ?`;
@@ -64,9 +76,25 @@ const getUserByUsername = (username) => {
     })
 }
 
+const fetchUser = async () => {
+    const axios = require('axios').default;
+
+    try {
+
+        // fetch dummies data
+        const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+
+        if (response.status === 200) return response.data;
+
+    } catch (error) {
+        console.error(`Fetch user fail`, error);
+    }
+}
+
 module.exports = { 
     createUserTable,
     createUser,
     getUsers,
-    getUserByUsername
+    getUserByUsername,
+    fetchUser
 };

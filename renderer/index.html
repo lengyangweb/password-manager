@@ -79,11 +79,52 @@
                 </div>
             </form>
         </div>
-        <div class="hidden w-screen flex justify-center" id="main-container">
+        <div class="hidden w-screen grid justify-items-center" id="main-container">
             <!-- buttons features -->
+            <div class="flex">
+                <button class="py-1 px-4 mx-1 border-2 rounded border-yellow-600 hover:bg-yellow-600 border-2 text-xs">Create User</button>
+                <button class="py-1 px-4 mx-1 border-2 rounded border-yellow-600 hover:bg-yellow-600 border-2 text-xs">Clip Password</button>
+                <button class="py-1 px-4 mx-1 border-2 rounded border-yellow-600 hover:bg-yellow-600 border-2 text-xs">Clip Username</button>
+                <button class="py-1 px-4 mx-1 border-2 rounded border-yellow-600 hover:bg-yellow-600 border-2 text-xs">Logout</button>
+            </div>
             <!-- table of credentials -->
+            <table class="border-collapse rounded border-2 border-yellow-600 w-11/12 mt-4 text-xs">
+                <thead>
+                  <tr>
+                    <th class="border-2 border-yellow-600 py-1">ID</th>
+                    <th class="border-2 border-yellow-600 py-1">State</th>
+                    <th class="border-2 border-yellow-600 py-1">City</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="hover:bg-yellow-600">
+                    <td class="border border-yellow-700 py-1 px-2">1</td>
+                    <td class="border border-yellow-700 py-1 px-2">Indiana</td>
+                    <td class="border border-yellow-700 py-1 px-2">Indianapolis</td>
+                  </tr>
+                  <tr class="hover:bg-yellow-600">
+                    <td class="border border-yellow-700 py-1 px-2">2</td>
+                    <td class="border border-yellow-700 py-1 px-2">Ohio</td>
+                    <td class="border border-yellow-700 py-1 px-2">Columbus</td>
+                  </tr>
+                  <tr class="hover:bg-yellow-600">
+                    <td class="border border-yellow-700 py-1 px-2">3</td>
+                    <td class="border border-yellow-700 py-1 px-2">Wisconsin</td>
+                    <td class="border border-yellow-700 py-1 px-2">Brookfield</td>
+                  </tr>
+                  <tr class="hover:bg-yellow-600">
+                    <td class="border border-yellow-700 py-1 px-2">4</td>
+                    <td class="border border-yellow-700 py-1 px-2">Minnesota</td>
+                    <td class="border border-yellow-700 py-1 px-2">Woodbury</td>
+                  </tr>
+                  <tr class="hover:bg-yellow-600">
+                    <td class="border border-yellow-700 py-1 px-2">5</td>
+                    <td class="border border-yellow-700 py-1 px-2">California</td>
+                    <td class="border border-yellow-700 py-1 px-2">Fresno</td>
+                  </tr>
+                </tbody>
+              </table>
             <!-- maybe some button on the bottom too? will think about it -->
-            <h1>Welcome!</h1>
         </div>
     </div>
 </body>

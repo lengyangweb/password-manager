@@ -22,5 +22,6 @@ contextBridge.exposeInMainWorld('auth', {
 
 // handle user request
 contextBridge.exposeInMainWorld('user', {
-  register: (newUser) => ipcRenderer.invoke('user:register', newUser)
+  register: (newUser) => ipcRenderer.invoke('user:register', newUser),
+  getUser: () => ipcRenderer.invoke('user:get')
 });

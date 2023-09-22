@@ -36,4 +36,14 @@ async function registerUser(e) {
 
 }
 
-export { registerUser };
+const fetchUser = async () => {
+    try {
+        const response = await user.getUser();
+
+        return response;
+    } catch (error) {
+        console.error(`Fail trying to fetch user`, error);
+    }
+}
+
+export { registerUser, fetchUser };

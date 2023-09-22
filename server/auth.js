@@ -2,11 +2,19 @@ const bcryptjs = require('bcryptjs');
 const { getUserByUsername } = require('./services/user');
 const { generateToken } = require('./utilities/generateToken');
 
+/**
+ * Handle login authentication
+ * @param {Object} credentials 
+ * @returns {Object}
+ */
 async function login(credentials) {
     
     try {
+
+        // desctructure username and password fields
         const { username, password } = credentials;
 
+        // get user from service
         const users = await getUserByUsername(username);
         
         // if no user
@@ -41,6 +49,4 @@ async function login(credentials) {
     }
 }
 
-module.exports = {
-    login
-}
+module.exports = { login }
