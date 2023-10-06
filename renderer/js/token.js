@@ -1,5 +1,4 @@
-// imports
-import { showLoginPage } from "./display.js";
+import { showLoginPage } from './display.js';
 
 /**
  * Save token to localStorage

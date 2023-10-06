@@ -2,7 +2,6 @@
 import { showMainPage } from "./display.js";
 import { saveToken, validateToken } from "./token.js";
 import { showMessage, showErrorMessage } from "./message.js";
-import { fetchUser } from "./user.js";
 
 /**
  * Login user
@@ -25,26 +24,21 @@ async function login(e) {
 
         // send login request to backend
         const response = await auth.login({ username, password });
-
         // if login fail
         if (!response.success) return showErrorMessage(response.message);
-
         // save token
         saveToken(response.token);
-        
         // show main page
         showMainPage();
 
-        // fetch user
-        const user = await fetchUser();
-
-        console.log(user); // log user for now
-
         // validate if token is expired
         validateToken(response.token);
-        
         // show success message
         showMessage(response.message);
+        // get all users
+        const users = await getUsers();
+        // show vault table
+        showVaultTable(users);
 
         // reset form vlue
         usernameInput.value = '';

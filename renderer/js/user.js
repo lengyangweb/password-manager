@@ -36,14 +36,24 @@ async function registerUser(e) {
 
 }
 
-const fetchUser = async () => {
-    try {
-        const response = await user.getUser();
+async function getUsers() {
+    return new Promise(async(resolve, reject) => {
+        try {
+            const response = await fetch('https://jsonplaceholder.typicode.com/users');
 
-        return response;
-    } catch (error) {
-        console.error(`Fail trying to fetch user`, error);
-    }
+            if (response.status !== 200) {
+                resolve([]); // return empty if fail
+            }
+            // get user data
+            const users = await response.json();
+            resolve(users);
+        } catch (error) {
+            reject(error);
+        }
+    })
 }
 
-export { registerUser, fetchUser };
+export { 
+    getUsers,
+    registerUser,
+};

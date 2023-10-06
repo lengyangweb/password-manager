@@ -14,19 +14,15 @@ async function login(credentials) {
         // desctructure username and password fields
         const { username, password } = credentials;
 
-        // get user from service
-        const users = await getUserByUsername(username);
+        const user = await getUserByUsername(username);
         
         // if no user
-        if (!users || !users.length) {
+        if (!user) {
             return { 
                 succes: false, 
                 message: `User doesn't exist` 
             }
         }
-
-        // destructure user
-        const [user] = users;
 
         // validate password
         const passMatch = bcryptjs.compareSync(password, user['password']);

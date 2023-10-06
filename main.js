@@ -8,8 +8,6 @@ const { isTokenExpired } = require('./server/utilities/generateToken');
 const { createUserTable, createUser } = require('./server/services/user');
 const { fetchUser } = require('./renderer/js/user');
 
-// process.env.NODE_ENV = 'development';
-
 const isDev = process.env.NODE_ENV === 'development'; // if dev
 const isMac = process.platform === 'darwin'; // mac 
 
@@ -35,9 +33,6 @@ const createMainWindow = () => {
 
 app.whenReady().then(() => {
     createMainWindow(); // initiate main window
-
-    // create tables
-    createUserTable();
 
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) createMainWindow();
