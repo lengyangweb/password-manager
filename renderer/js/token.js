@@ -1,3 +1,5 @@
+import { showLoginPage } from './display.js';
+
 /**
  * Save token to localStorage
  * @param {String} token 

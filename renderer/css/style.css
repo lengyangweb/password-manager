@@ -1,3 +1,9 @@
 .hidden {
     visibility: hidden;
 }
+
+#vault-table {
+    min-width: 90vw;
+    max-height: 350px;
+    overflow: hidden;
+}

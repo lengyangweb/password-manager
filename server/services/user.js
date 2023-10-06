@@ -1,23 +1,6 @@
 const bcryptjs = require('bcryptjs');
-const { openDB } = require("../dbs/config");
-const db = openDB(); // open database
-
-const createUserTable = () => {
-    const sql = `CREATE TABLE IF NOT EXISTS users(
-        id INTEGER PRIMARY KEY,
-        username NOT NULL UNIQUE,
-        email NOT NULL UNIQUE,
-        password NOT NULL
-    )`;
-    db.serialize(() => {
-        db.prepare(sql).run((err) => {
-            if (err) return console.error(err.message);
-        });
-
-        // db.close(); // close database;
-    });
-
-}
+const { PrismaClient, Prisma } = require('@prisma/client');
+const { generateToken } = require('../utilities/generateToken');
 
 /**
  * 
@@ -25,47 +8,61 @@ const createUserTable = () => {
  * @returns {Object}
  */
 const createUser = (newUser) => {
-    return new Promise((resolve, reject) => {
-        const sql = `INSERT INTO users(username, email, password)
-          VALUES(?, ?, ?)
-        `;
+    return new Promise(async(resolve, reject) => {
+        const prisma = new PrismaClient();
+        // hash password
+        const passHash = bcryptjs.hashSync(newUser.password, 10);
+        newUser.password = passHash;
 
-        // hash the password before save
-        const salt = bcryptjs.genSaltSync(10);
-        newUser['password'] = bcryptjs.hashSync(newUser['password'], salt);
-
-        db.run(sql, [ newUser['username'], newUser['email'], newUser['password'] ], (err) => {
-            if (err) reject(err.message); // throw error
-            resolve({ success: true });
-        });
+        try {
+            const result = await prisma.user.create({
+                data: newUser
+            });
+            // if user isn't created
+            if (!result) {
+                resolve({
+                    success: false,
+                    message: 'Unable to create user'
+                });
+            }
+            // return new user info
+            resolve(result);
+        } catch (error) {
+            console.error(`Error creating new user`, error);
+            await prisma.$disconnect();
+            reject(error);
+        }
     })
 }
 
 const getUsers = () => {
     return new Promise((resolve, reject) => {
-        const query = `SELECT * FROM users`;
-        
-        db.all(query, [], (err, users) => {
-            if (err) reject(err.message);
+        try {
             
-            resolve(users); // return users
-            // db.close(); // close database
-        })
+        } catch (error) {
+            console.error(`Error fetching users`, )
+        }
     });
 }
 
 const getUserByUsername = (username) => {
-    return new Promise((resolve, reject) => {
-        const sql = `SELECT * FROM users WHERE username = ?`;
-        db.all(sql, [username], (err, user) => {
-            if (err) reject(err);
-            resolve(user);
-        })
+    return new Promise(async(resolve, reject) => {
+        const prisma = new PrismaClient();
+        try {
+            // query user
+            const user = await prisma.user.findFirst({
+                where: { username: username }
+            });
+            resolve({ ...user });
+        } catch (error) {
+            console.error(`Error fetching username`, error);
+            await prisma.$disconnect();
+            reject(error);
+        } 
     })
 }
 
 module.exports = { 
-    createUserTable,
     createUser,
     getUsers,
     getUserByUsername
