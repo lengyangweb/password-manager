@@ -82,10 +82,23 @@
             </div>
         </div>
         <div class="hidden w-screen flex justify-center" id="main-container">
-            <!-- buttons features -->
-            <!-- table of credentials -->
-            <!-- maybe some button on the bottom too? will think about it -->
-            <h1>Welcome!</h1>
+            <div class="grid grid-rows-1 gap-4">
+                <div class="w-11/12">
+                    <!-- buttons features -->
+                    <div class="grid grid-cols-3 gap-x-2">
+                        <button class="py-1 px-4 hover:bg-yellow-600 border-2 border-yellow-600 rounded outline-none mt-3 text-xs" id="clipPassBtn">Clip Password</button>
+                        <button class="py-1 px-4 hover:bg-yellow-600 border-2 border-yellow-600 rounded outline-none mt-3 text-xs" id="clipUsernameBtn">Clip Username</button>
+                        <button class="py-1 px-4 hover:bg-yellow-600 border-2 border-yellow-600 rounded outline-none mt-3 text-xs" id="clipAddressBtn">Clip Address</button>
+                    </div>
+                </div>
+                <!-- table of credentials -->
+                <table id="vault-table" class="border-3 border-collapse  border-yellow-600 px-4">
+                    <thead id="vault-t-head"></thead>
+                    <tbody id="vault-t-body"></tbody>
+                    <tfoot id="vault-t-foot"></tfoot>
+                </table>
+                <!-- maybe some button on the bottom too? will think about it -->
+            </div>
         </div>
     </div>
 </body>
